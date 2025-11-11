@@ -9,14 +9,12 @@ import { isBusinessOpen } from "@/helper/Helper";
 import { IoLogoInstagram } from "react-icons/io5";
 import { FaFacebookSquare } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import { useEffect, useRef, useState } from "react";
 
 const BusinessCard = ({ business }: { business: BusinessState }) => {
   const open = business?.hours ? isBusinessOpen(business.hours) : false;
   const router = useRouter();
-  const instagramRef = useRef<HTMLAnchorElement>(null);
-  const facebookRef = useRef<HTMLAnchorElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
 
   const {
     openDescriptionModal,
@@ -27,49 +25,33 @@ const BusinessCard = ({ business }: { business: BusinessState }) => {
     togglePublished,
   } = useBusiness();
 
+  // Efectos de hover simples sin GSAP
   useEffect(() => {
-    // Función para crear efecto de neón aleatorio
-    const createRandomNeonEffect = (element: HTMLElement | null, color: string) => {
-      if (!element) return;
+    const handleHover = () => setIsHovering(true);
+    const handleUnhover = () => setIsHovering(false);
 
-      const timeline = gsap.timeline({ repeat: -1, repeatDelay: Math.random() * 3 + 2 });
-      
-      // Estados aleatorios para el efecto de neón
-      const effects = [
-        { scale: 1.1, filter: `drop-shadow(0 0 5px ${color}) brightness(1.3)` },
-        { scale: 1.15, filter: `drop-shadow(0 0 8px ${color}) brightness(1.5)` },
-        { scale: 1.2, filter: `drop-shadow(0 0 12px ${color}) brightness(1.8)` },
-        { scale: 1.1, filter: `drop-shadow(0 0 6px ${color}) brightness(1.4)` }
-      ];
+    const instagram = document.querySelector('.instagram-icon');
+    const facebook = document.querySelector('.facebook-icon');
 
-      // Agregar animaciones aleatorias
-      effects.forEach((effect, index) => {
-        timeline.to(element, {
-          ...effect,
-          duration: 0.8 + Math.random() * 0.7,
-          ease: "sine.inOut",
-          delay: index === 0 ? 0 : Math.random() * 1
-        });
-      });
+    if (instagram) {
+      instagram.addEventListener('mouseenter', handleHover);
+      instagram.addEventListener('mouseleave', handleUnhover);
+    }
 
-      return timeline;
-    };
+    if (facebook) {
+      facebook.addEventListener('mouseenter', handleHover);
+      facebook.addEventListener('mouseleave', handleUnhover);
+    }
 
-    // Aplicar efectos a los iconos
-    const instagramTimeline = createRandomNeonEffect(
-      instagramRef.current, 
-      '#E1306C' // Color rosa de Instagram
-    );
-    
-    const facebookTimeline = createRandomNeonEffect(
-      facebookRef.current, 
-      '#1877F2' // Color azul de Facebook
-    );
-
-    // Cleanup function
     return () => {
-      instagramTimeline?.kill();
-      facebookTimeline?.kill();
+      if (instagram) {
+        instagram.removeEventListener('mouseenter', handleHover);
+        instagram.removeEventListener('mouseleave', handleUnhover);
+      }
+      if (facebook) {
+        facebook.removeEventListener('mouseenter', handleHover);
+        facebook.removeEventListener('mouseleave', handleUnhover);
+      }
     };
   }, []);
 
@@ -130,7 +112,7 @@ const BusinessCard = ({ business }: { business: BusinessState }) => {
             {business?.name || "Nombre Negocio"}
           </CardTitle>
           <p className="text-base text-muted-foreground line-clamp-1">
-            {business?.category || "Categoria"}
+            {business?.category?.[0] || "Categoria"} {/* Cambié category por categories[0] */}
           </p>
         </div>
         <span
@@ -143,8 +125,6 @@ const BusinessCard = ({ business }: { business: BusinessState }) => {
       </CardHeader>
 
       <CardContent className="flex flex-col flex-1 p-0 px-6 pb-4">
-        <DescriptionModal />
-
         {/* Descripción compacta */}
         {business?.description && (
           <div className="text-sm text-gray-600 mb-3 line-clamp-2 min-h-[40px]">
@@ -178,40 +158,34 @@ const BusinessCard = ({ business }: { business: BusinessState }) => {
           <InfoItem icon={Clock} text={business?.hours || "Horario"} />
         </div>
 
-        {/* Redes sociales SIEMPRE en la parte inferior - posición fija */}
+        {/* Redes sociales con efectos CSS nativos */}
         <div className="flex justify-end space-x-4 pt-3 mt-auto border-t" onClick={handleLinkClick}>
           {business?.instagram && (
             <a
-              ref={instagramRef}
               href={business.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-pink-600 text-base transition-all duration-300"
-              style={{
-                filter: 'brightness(1)'
-              }}
+              className={`instagram-icon text-pink-600 text-lg transition-all duration-300 ${
+                isHovering ? 'scale-110 filter drop-shadow(0 0 8px #E1306C) brightness(1.3)' : 'scale-100'
+              }`}
             >
               <IoLogoInstagram />
             </a>
           )}
           {business?.facebook && (
             <a
-              ref={facebookRef}
               href={business.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 text-base transition-all duration-300"
-              style={{
-                filter: 'brightness(1)'
-              }}
+              className={`facebook-icon text-blue-600 text-lg transition-all duration-300 ${
+                isHovering ? 'scale-110 filter drop-shadow(0 0 8px #1877F2) brightness(1.3)' : 'scale-100'
+              }`}
             >
               <FaFacebookSquare />
             </a>
           )}
         </div>
       </CardContent>
-
-      <DescriptionModal />
     </Card>
   );
 };
