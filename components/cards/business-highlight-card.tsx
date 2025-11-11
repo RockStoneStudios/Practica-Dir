@@ -238,8 +238,9 @@ export default function BusinessHighlightCard({
       }, 2000);
     }, 100);
   };
-
-  const isBasicosCategory = business?.category?.toLowerCase() === 'basicos';
+const isBasicosCategory = business?.category?.some((cat: string) => 
+  cat.toLowerCase().startsWith('basicos/')
+);
 
   // 🎯 Mapeo de íconos con ícono dinámico según categoría
   const iconConfig = [
