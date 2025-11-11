@@ -1,23 +1,21 @@
 // components/search/filtered-categorie-list.tsx
 "use client";
 
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from '@/components/ui/input';
-import { getCategoryInfo, getAllCategories } from "@/helper/Categories";
+import { getAllCategories } from "@/helper/Categories";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ChevronRight, Search, Sparkles } from "lucide-react";
+import { ChevronRight, Search, Sparkles, LayoutList } from "lucide-react";
 
 interface FilteredListProps {
-  icon?: ReactNode;
   title?: string;
   data: string[];
   showAll?: boolean;
 }
 
 export default function FilteredListCategorie({ 
-  icon: Icon, 
   title, 
   data, 
   showAll = false 
@@ -68,11 +66,9 @@ export default function FilteredListCategorie({
         {title && (
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              {Icon && (
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
-                  <span className="text-white text-lg">{Icon}</span>
-                </div>
-              )}
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
+                <LayoutList className="w-5 h-5 text-white" />
+              </div>
               <h2 className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
                 {title}
               </h2>
@@ -122,7 +118,7 @@ export default function FilteredListCategorie({
       {filteredData.length > 0 && (
         <div className="w-full sm:hidden">
           <div className="grid grid-cols-4 gap-4">
-            {displayDataMobile.map((category, index) => {
+            {displayDataMobile.map((category) => {
               const isImageIcon = category?.icon?.startsWith('/');
 
               return (
@@ -203,7 +199,7 @@ export default function FilteredListCategorie({
       {filteredData.length > 0 && (
         <div className="hidden sm:block w-full">
           <div className="grid grid-cols-5 gap-6">
-            {displayDataDesktop.map((category, index) => {
+            {displayDataDesktop.map((category) => {
               const isImageIcon = category?.icon?.startsWith('/');
 
               return (

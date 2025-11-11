@@ -28,12 +28,12 @@ export default async function Home({ searchParams }: BusinessesPageProps) {
         </h1>
       </div>
       <div className="px-5 mb-8">
-        <FilteredListCategorie 
-          data={categories} 
-          title="Categorias"
-          icon={<LayoutList/>}
-        />
-      </div>
+  <FilteredListCategorie 
+    data={categories} 
+    title="Categorias"
+    // ❌ icon={<LayoutList/>}  // No funciona con Client Components
+  />
+</div>
       
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 ml-1">
         {businesses.map((business: BusinessState) => (

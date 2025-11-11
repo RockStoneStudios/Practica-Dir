@@ -19,7 +19,7 @@ export default async function CategoryAddressCard () {
           <FilteredListCategorie 
             data={categories} 
             title="Categorias"
-            icon={<LayoutList/>}
+            // icon={<LayoutList/>}
           />
            <FilteredList 
             data={addresses} 
