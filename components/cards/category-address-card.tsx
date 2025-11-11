@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react'
 import { getUniqueCategoriesAndAddresses } from '@/actions/business'
 import FilteredList from '../search/filtered-list';
