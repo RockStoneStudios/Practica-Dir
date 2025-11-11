@@ -1,0 +1,10 @@
+# public/robots.txt
+User-agent: *
+Allow: /
+
+# Bloquear rutas admin o privadas si las tienes
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://www.directoriosopetran.com/sitemap.xml

@@ -1,0 +1,46 @@
+{
+  "news": [
+    {
+      "id": "1",
+      "slug": "poema-protesta-el-escarnecedor",
+      "title": "Poema protesta El escarnecedor",
+      "content": "<p>La vida de esta casona se resiste a derrumbarse, sus alientos ya pausados anuncian extinción.</p><p>En las pulsaciones de la biblioteca no corre sangre ni letras, porque después de la humareda hubo silencio absoluto. ¿Dónde quedaron tus fuerzas, oh, bahareque? ¿Dónde están las doncellas limpiando tus anaqueles?</p><p>Pasa el tiempo burlándose de sus dinteles; tus zaguanes son estiércol, los rincones fétidos guardan moscos; ¿Tienes esperanza aún estando muerta?</p><p>Lágrimas secas están en tus puertas, porque la gente dice: Muerta está, no vale la pena.</p><p>Ve y atestigua contra el destino el puñal que te hirió</p><p>Ve y dicta sentencia al que tu vida acabó</p><p>No pases por alto ningún error</p><p>Ve y dile que aún agonizando estás</p><p>Dile que nunca más volverás.</p>",
+      "category": "Narrativo Reflexivo",
+      "date": "2025-11-08T17:02:00",
+      "author": "Santiago Pualho",
+      "readTime": "2 min tiempo de lectura",
+      "image": "/images/casa-cultura.jpg",
+      "excerpt": "Lágrimas secas están en tus puertas, porque la gente dice: Muerta está, no vale la pena.",
+      "tags": ["Narrativo", "Reflexivo", "Poema", "Casa de la Cultura"],
+      "featured": true
+    },
+    {
+      "id": "2",
+      "slug": "deepseek-v3-supera-gpt4o-sopetran",
+      "title": "DeepSeek V3 Supera a GPT-4o: Sopetrán se Prepara para Integrar IA China y Analizar Ventas Locales",
+      "content": "<p>¡El mundo de la IA está temblando! En noviembre de 2025, el modelo chino DeepSeek V3 (de la startup DeepSeek AI) ha dejado atrás a los titanes estadounidenses como OpenAI's GPT-4o, Google's Gemini 2.5 Pro y Anthropic's Claude 3.5 Sonnet.</p><p><strong>1. Eficiencia Brutal: Mismo Poder, 90% Menos Dinero</strong></p><p>DeepSeek V3 se entrenó con solo $5.6 millones y 6 meses de tiempo. GPT-4o necesitó cientos de millones y años. Gracias a su arquitectura MoE (Mixture of Experts), solo activa 37 mil millones de parámetros por consulta de un total de 671 mil millones, siendo 4 veces más eficiente. El costo por millón de tokens es $0.14 frente a $5 de GPT-4o. Ideal para países emergentes como Colombia.</p><p><strong>2. Rendimiento Superior en Benchmarks</strong></p><p>LMSYS Arena: DeepSeek V3 (1,385) supera a GPT-4o (1,372). En MMLU-Pro obtiene 88.7% frente a 87.2% de GPT-4o. También domina en MATH-500 y GPQA. Es más rápido, económico y preciso en tareas de texto y lógica.</p><p><strong>3. Open Source y Accesibilidad</strong></p><p>DeepSeek V3 es 100% open-source (licencia MIT), libre de usar y modificar, a diferencia de GPT-4o o Gemini, que son cerrados y costosos. Esto democratiza el acceso a la IA, permitiendo que startups y desarrolladores en Latinoamérica la adapten con datos locales.</p>",
+      "category": "Inteligencia Artificial",
+      "date": "2025-11-05T10:15:00",
+      "author": "Omar Ortiz",
+      "readTime": "2 min tiempo de lectura",
+      "image": "/images/deepseek.jpeg",
+      "excerpt": "El modelo chino DeepSeek V3 alcanza el primer lugar mundial mientras Sopetrán prepara su integración para análisis de ventas locales.",
+      "tags": ["IA", "Tecnología", "Comercio", "DeepSeek"],
+      "featured": true
+    }
+  ],
+  "categories": [
+    {
+      "id": "ia",
+      "name": "Inteligencia Artificial",
+      "count": 1,
+      "color": "from-green-600 to-blue-600"
+    },
+    {
+      "id": "narrativo",
+      "name": "Narrativo Reflexivo",
+      "count": 1,
+      "color": "from-blue-600 to-purple-600"
+    }
+  ]
+}
