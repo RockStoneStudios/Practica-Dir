@@ -75,7 +75,7 @@ interface BusinessContextType {
   fetchBusinessesByMainCategory: (mainCategory: string, page?: number) => Promise<void>;
   fetchBusinessesBySubcategory: (fullCategory: string, page?: number) => Promise<void>;
   searchWithFilters: (query?: string, mainCategory?: string, subcategory?: string, page?: number) => Promise<void>;
-  fetchCategoriesWithCounts: () => Promise<void>;
+  // fetchCategoriesWithCounts: () => Promise<void>;
   resetFilters: () => void;
   setSelectedMainCategory: React.Dispatch<React.SetStateAction<string>>;
   setSelectedSubcategory: React.Dispatch<React.SetStateAction<string>>;
@@ -138,9 +138,9 @@ export const BusinessProvider: React.FC<{ children: ReactNode }> = ({ children }
     }
   }, [_id]);
 
-  useEffect(() => {
-    fetchCategoriesWithCounts();
-  }, []);
+  // useEffect(() => {
+  //   fetchCategoriesWithCounts();
+  // }, []);
 
   // ✅ Obtener categorías del negocio como array
   const getBusinessCategories = (): string[] => {
@@ -465,14 +465,16 @@ export const BusinessProvider: React.FC<{ children: ReactNode }> = ({ children }
     }
   };
 
-  const fetchCategoriesWithCounts = async () => {
-    try {
-      const result = await getCategoriesWithCounts();
-      setCategoriesWithCounts(result);
-    } catch (error) {
-      console.error("Error al cargar estadísticas de categorías");
-    }
-  };
+//  const fetchCategoriesWithCounts = async () => {
+//   try {
+//     const result = await getCategoriesWithCounts();
+//     setCategoriesWithCounts(result);
+//   } catch (error) {
+//     console.error("Error completo al cargar estadísticas:", error);
+//     // Muestra el error en la UI para debugging
+//     setCategoriesWithCounts([]);
+//   }
+// };
 
   const resetFilters = () => {
     setSelectedMainCategory('');
@@ -514,7 +516,6 @@ export const BusinessProvider: React.FC<{ children: ReactNode }> = ({ children }
       fetchBusinessesByMainCategory,
       fetchBusinessesBySubcategory,
       searchWithFilters,
-      fetchCategoriesWithCounts,
       resetFilters,
       setSelectedMainCategory,
       setSelectedSubcategory,
